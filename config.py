@@ -5,6 +5,7 @@ class Config():
     parent class configurations 
     '''
     QUOTES_API='http://quotes.stormconsultancy.co.uk/{}.json'
+    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://githui:Kqcaptain#2@localhost/blog'
 
 class ProdConfig(Config):
     '''
