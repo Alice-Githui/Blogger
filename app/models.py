@@ -1,4 +1,5 @@
 from . import db
+from datetime import datetime
 
 class Quotes:
     '''
@@ -19,7 +20,7 @@ class User(db.Model):
     email=db.Column(db.String)
     profile_pic=db.Column(db.String)
     pass_secure=db.Column(db.String(200))
-    blogposts=db.relationship('Post', foreign_keys='Post.user_id' backref="users", lazy="dynamic")
+    blogposts=db.relationship('Post', foreign_keys='Post.user_id',backref="users", lazy="dynamic")
     comment=db.relationship('Comment', foreign_keys="Comment.user_id", backref="users", lazy="dynamic")
     like=db.relationship('Like', foreign_keys="Like.user_id", backref="users", lazy="dynamic")
     dislike=db.relationship('Dislike', foreign_keys="Dislike.user_id", backref="users", lazy="dynamic")
@@ -33,10 +34,10 @@ class Post(db.Model):
     id=db.Column(db.Integer, primary_key=True)
     title=db.Column(db.String)
     blog=db.Column(db.Text)
-    time=db.Column(db.Datetime,default=datetime.utcnow)
+    time=db.Column(db.DateTime(),default=datetime.utcnow)
     user_id=db.Column(db.Integer, db.ForeignKey('users.id'))
     category_id=db.Column(db.Integer, db.ForeignKey('category.id'))
-    comments=db.relationship('Comment', foreign_keys="Comment.post_id" backref='post', lazy="dynamic")
+    comments=db.relationship('Comment', foreign_keys="Comment.post_id",backref='post', lazy="dynamic")
     like=db.relationship('Like', foreign_keys="Like.post_id", backref="posts", lazy="dynamic")
     dislike=db.relationship('Dislike', foreign_keys="Dislike.post_id", backref="posts", lazy="dynamic")
 
@@ -87,7 +88,7 @@ class Like(db.Model):
 
     id=db.Column(db.Integer, primary_key=True)
     user_id=db.Column(db.Integer, db.ForeignKey('users.id'))
-    post_id=db.Column(db.integer, db.ForeignKey('posts.id'))
+    post_id=db.Column(db.Integer, db.ForeignKey('posts.id'))
 
     def save_like(self):
         db.session.add(self)
@@ -107,7 +108,7 @@ class Dislike(db.Model):
 
     id=db.Column(db.Integer, primary_key=True)
     user_id=db.Column(db.Integer, db.ForeignKey('users.id'))
-    post_id=db.Column(db.integer, db.ForeignKey('posts.id'))
+    post_id=db.Column(db.Integer, db.ForeignKey('posts.id'))
 
     def save_dislikes(self):
         db.session.add(self)
