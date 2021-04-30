@@ -4,7 +4,7 @@ class Config():
     '''
     parent class configurations 
     '''
-    pass
+    QUOTES_API='http://quotes.stormconsultancy.co.uk/{}.json'
 
 class ProdConfig(Config):
     '''
