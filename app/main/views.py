@@ -12,6 +12,4 @@ def index():
 
     quotes=get_quotes()
 
-    # print(random_quotes)
-
     return render_template('index.html', title=title, quotes=quotes)
