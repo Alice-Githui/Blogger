@@ -8,14 +8,13 @@ from .. import db, photos
 
 @main.route('/')
 def index():
-    '''
-    returns the index page and renders its contents
-    '''
+    posts=Post.query.all()
+    allposts=Post.query.filter_by(category="allposts")   
     title='Welcome to this blog app'
 
     quotes=get_quotes()
 
-    return render_template('index.html', title=title, quotes=quotes)
+    return render_template('index.html', title=title, quotes=quotes, posts=posts, allposts=allposts)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -61,12 +60,12 @@ def new_post():
     form=BlogForm()
 
     if form.validate_on_submit():
+        category=form.category.data
         title=form.title.data
         blog=form.blog.data
         user_id=current_user
 
-        new_post=Post(title=title, blog=blog, user_id=user_id._get_current_object().id)
-        new_post.save()
+        new_post=Post(category=category,title=title, blog=blog, user_id=user_id._get_current_object().id)
 
         db.session.add(new_post)
         db.session.commit()

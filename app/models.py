@@ -52,6 +52,7 @@ class Post(db.Model):
     id=db.Column(db.Integer, primary_key=True)
     title=db.Column(db.String)
     blog=db.Column(db.Text)
+    category=db.Column(db.String)
     time=db.Column(db.DateTime(),default=datetime.utcnow)
     user_id=db.Column(db.Integer, db.ForeignKey('users.id'))
     comments=db.relationship('Comment', foreign_keys="Comment.post_id",backref='post', lazy="dynamic")

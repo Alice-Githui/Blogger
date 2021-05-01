@@ -1,0 +1,18 @@
+{% macro displayCategory(categories) %}
+<div class="row">
+    {% for category in categories %}
+    <div class="col-md-10">
+        <div>
+            <div>
+                <small>{{category.username}}</small>
+                <h1>{{category.title}}</h1>
+                <p>{{category.blog}}</p>
+            </div>
+            
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endmacro %}
