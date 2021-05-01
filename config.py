@@ -7,6 +7,8 @@ class Config():
     QUOTES_API='http://quotes.stormconsultancy.co.uk/{}.json'
     SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://githui:Kqcaptain#2@localhost/blog'
     SQLALCHEMY_TRACK_MODIFICATIONS=False
+    SECRET_KEY=os.environ.get('SECRET_KEY')
+    UPLOADED_PHOTOS_DEST='app/static/photos'
 
 class ProdConfig(Config):
     '''

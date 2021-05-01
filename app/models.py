@@ -24,7 +24,7 @@ class User(UserMixin,db.Model):
     id=db.Column(db.Integer, primary_key=True)
     username=db.Column(db.String(255), index=True)
     bio=db.Column(db.String)
-    email=db.Column(db.String, index=True)
+    email=db.Column(db.String,unique=True,index=True)
     profile_pic=db.Column(db.String)
     pass_secure=db.Column(db.String(200))
     blogposts=db.relationship('Post', foreign_keys='Post.user_id',backref="users", lazy="dynamic")

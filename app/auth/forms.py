@@ -5,7 +5,7 @@ from ..models import User
 from wtforms import ValidationError
 
 class RegistrationForm(FlaskForm):
-    email=StringField('Enter you email address', validators=[Required(), Email()])
+    email=StringField('Enter your email address', validators=[Required(), Email()])
     username=StringField('Enter your username', validators=[Required()])
     password=PasswordField('Input password', validators=[Required(), EqualTo('confirm_password', message='Passwords do not match')])
     confirm_password=PasswordField('Confirm Password', validators=[Required()])
@@ -21,7 +21,6 @@ class RegistrationForm(FlaskForm):
 
 class LoginForm(FlaskForm):
     email=StringField('Enter Your Email Address', validators=[Required(), Email()])
-    username=StringField('Enter Your username', validators=[Required()])
     password=PasswordField('Input your password', validators=[Required()])
     remember=BooleanField('Remember Me')
     submit=SubmitField('Login')
