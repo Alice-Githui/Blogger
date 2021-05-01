@@ -19,11 +19,16 @@
 
                 </div>
                 <div class="col-md-2">
+                    <div>
+                        <a href="{{url_for('main.new_post')}}">Contribute to our page</a>
+                    </div>  
                     <div id="quotes" class="card">
-                        <h4>Quote</h4>
-                        <p><strong>Quote of the day: {{quotes.author}}</strong></p>
-                        <p>{{quotes.quote}}</p>
-                    </div>                    
+                        <h4 class="card-head">Quote</h4>
+                        <div class="card-body">
+                            <p><strong>Quote of the day: {{quotes.author}}</strong></p>
+                            <p>{{quotes.quote}}</p>
+                        </div>                        
+                    </div>                  
                 </div>
             </div>
         </div>

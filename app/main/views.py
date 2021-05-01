@@ -1,10 +1,11 @@
-from flask import render_template, request, redirect,url_for,abort
+from flask import render_template, request, redirect,url_for,abort, flash
 from . import main
 from ..requests import get_quotes
 from flask_login import login_required, current_user
-from ..models import User,Post
-from .forms import UpdateProfile,BlogForm,CommentForm
+from ..models import User,Post,Comment
+from .forms import UpdateProfile,BlogForm,CommentForm, UpdateBlog
 from .. import db, photos
+import markdown2
 
 @main.route('/')
 def index():
@@ -73,4 +74,65 @@ def new_post():
         return redirect(url_for('main.index'))
 
     return render_template('newblog.html', form=form)
+
+@main.route('/comment/<int:post_id>', methods=['GET', 'POST'])
+def new_comment(post_id):
+    commentform=CommentForm()
+    post = Post.query.get(post_id)
+    all_comments = Comment.query.filter_by(post_id = post_id).all()
+
+    if commentform.validate_on_submit():
+        comment=commentform.comment.data
+        post_id=post_id
+
+        new_comment=Comment(comment=comment, post_id=post_id)
+        new_comment.save_comment()
+
+        db.session.add(new_comment)
+        db.session.commit()
+
+        return redirect(url_for('.new_comment', post_id=post_id, comment=comment))
+    print(all_comments)
+    return render_template('comment.html', commentform=commentform, all_comments=all_comments,post=post)
+
+@main.route('/comment/delete/<int:comment_id>', methods=['GET', 'POST'])
+@login_required
+def delete_comment(comment_id):
+    comment=Comment.query.filter_by(id=comment_id).first()
+
+    db.session.delete(comment)
+    db.session.commit()
+
+    return redirect(url_for('main.new_comment'))
+
+
+@main.route('/post/delete/<int:post_id>', methods=['GET','POST'])
+@login_required
+def delete_post(post_id):
+    post=Post.query.filter_by(id = post_id).first()
+
+    db.session.delete(post)
+    db.session.commit()
+
+    return redirect(url_for('main.index'))
+
+@main.route('/post/<int:post_id>/update', methods=['GET', 'POST'])
+@login_required
+def update_post(post_id):
+    post=Post.query.get(post_id)
+
+    form=UpdateBlog()
+
+    if form.validate_on_submit():
+        post.category=form.category.data
+        post.title=form.title.data
+        post.blog=form.blog.data
+
+        db.session.commit()
+        flash("You have updated your blog")
+
+        return redirect(url_for('main.index', id=post.id))
+
+    return render_template('updateblog.html', form=form)
+
 
