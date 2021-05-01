@@ -1,18 +1,24 @@
 {% macro displayCategory(categories) %}
-<div class="row">
-    {% for category in categories %}
-    <div class="col-md-10">
-        <div>
+<div class="container">
+    <div class="row">
+        {% for category in categories %}
+        <div class="col-md-10">
             <div>
-                <small>{{category.username}}</small>
-                <h1>{{category.title}}</h1>
-                <p>{{category.blog}}</p>
+                <div>
+                    <small>{{category.username}}</small>
+                    <h1>{{category.title}}</h1>
+                    <p>{{category.blog}}</p>
+                </div>
+                <div><a href="{{url_for('main.new_comment', post_id=category.id)}}">Comments:</a></div>  
+                <div id="update-delete">
+                    <a href="{{url_for('main.delete_post', post_id=category.id)}}"><small>Delete Blog Post</small></a>
+                </div>          
             </div>
-            <div><a href="{{url_for('main.new_comment', post_id=category.id)}}">Comments:</a></div>            
         </div>
-    </div>
+    
+        {% endfor %}
+    </div>   
 
-    {% endfor %}
 </div>
 
 {% endmacro %}
