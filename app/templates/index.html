@@ -11,11 +11,20 @@
     </head>
     <body>
         {% block content %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-10">
 
-        <h4>Quote</h4>
-        <p><strong>Quote of the day: {{quotes.author}}</strong></p>
-
-        <p>{{quotes.quote}}</p>
+                </div>
+                <div class="col-md-2">
+                    <div id="quotes" class="card">
+                        <h4>Quote</h4>
+                        <p><strong>Quote of the day: {{quotes.author}}</strong></p>
+                        <p>{{quotes.quote}}</p>
+                    </div>                    
+                </div>
+            </div>
+        </div>
         {% endblock %}
     </body>
 </html>

@@ -25,7 +25,7 @@ class User(UserMixin,db.Model):
     username=db.Column(db.String(255), index=True)
     bio=db.Column(db.String)
     email=db.Column(db.String,unique=True,index=True)
-    profile_pic=db.Column(db.String)
+    profile_pic_path=db.Column(db.String)
     pass_secure=db.Column(db.String(200))
     blogposts=db.relationship('Post', foreign_keys='Post.user_id',backref="users", lazy="dynamic")
     comment=db.relationship('Comment', foreign_keys="Comment.user_id", backref="users", lazy="dynamic")
@@ -54,7 +54,6 @@ class Post(db.Model):
     blog=db.Column(db.Text)
     time=db.Column(db.DateTime(),default=datetime.utcnow)
     user_id=db.Column(db.Integer, db.ForeignKey('users.id'))
-    category_id=db.Column(db.Integer, db.ForeignKey('category.id'))
     comments=db.relationship('Comment', foreign_keys="Comment.post_id",backref='post', lazy="dynamic")
     like=db.relationship('Like', foreign_keys="Like.post_id", backref="posts", lazy="dynamic")
     dislike=db.relationship('Dislike', foreign_keys="Dislike.post_id", backref="posts", lazy="dynamic")
@@ -76,7 +75,6 @@ class Category(db.Model):
 
     id=db.Column(db.Integer, primary_key=True)
     category=db.Column(db.String)
-    post = db.relationship('Post', foreign_keys='Post.category_id', backref='category', lazy="dynamic")
 
     def __repr__(self):
         return f'Category{self.category}'
