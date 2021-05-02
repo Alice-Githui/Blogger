@@ -3,36 +3,72 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        {% if title %}
-        <title>{{title}}</title>
-        {% else %}
-        <title>Welcome to this blog app</title>
-        {% endif %}
-    </head>
-    <body>
-        {% block content %}
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-10">
-                    {{macro.displayCategory(allposts)}}
 
+<head>
+    {% if title %}
+    <title>{{title}}</title>
+    {% else %}
+    <title>Welcome to this blog app</title>
+    {% endif %}
+</head>
+
+<body>
+    {% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                {{macro.displayCategory(allposts)}}
+
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <a href="{{url_for('main.new_post')}}">JOIN OUR COMMUNITY AND BE A CONTENT CONTRIBUTOR</a>
                 </div>
-                <div class="col-md-2">
-                    <div>
-                        <a href="{{url_for('main.new_post')}}">Contribute to our page</a>
-                    </div>  
-                    <div id="quotes" class="card">
-                        <h4 class="card-head">Quote</h4>
-                        <div class="card-body">
-                            <p><strong>Quote of the day: {{quotes.author}}</strong></p>
-                            <p>{{quotes.quote}}</p>
-                        </div>                        
-                    </div>                  
+                <br>
+
+                <p>QUOTE OF THE DAY:</p>
+                <div class="panel panel-default">
+                    <h4 class="panel-heading">Quote</h4>
+                    <div class="panel-body">
+                        <p><strong>Quote of the day: {{quotes.author}}</strong></p>
+                        <p>{{quotes.quote}}</p>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <h5>SUBSCRIBE TO OUR NEWSLETTER:</h5>
+                    <form action="" id="newsletter">
+                        <input type="email" placeholder="Enter Your Email Address" id="email" required>
+                        <br>
+                        <br>
+                        <button type="submit" class="btn btn-success" id="newsLetter">Subscribe</button>
+                    </form>
+                </div>
+                <br>
+                <div>
+                    <p>CONNECT WITH US ON OUR SOCIALS:</p>
+                    <ul>
+                        <li style="list-style-type: none;">
+                            <a href="http://facebook.com" target="blank">
+                                <i class="fab fa-facebook-square"></i>Facebook
+                            </a>
+                        </li>
+                        <li style="list-style-type: none;">
+                            <a href="http://instagram.com" target="blank">
+                                <i class="fab fa-instagram-square"></i>Instagram
+                            </a>
+                        </li>
+                        <li style="list-style-type: none;">
+                            <a href="http://twitter.com" target="blank">
+                                <i class="fab fa-twitter-square"></i>Twitter
+                            </a>
+                        </li>
+                    </ul>                    
                 </div>
             </div>
         </div>
-        {% endblock %}
-    </body>
-</html>
+    </div>
+    {% endblock %}
+</body>
 
+</html>

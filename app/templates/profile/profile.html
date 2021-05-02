@@ -4,36 +4,78 @@
 <div class="container">
     <div class="row">
         <!-- Displaying username -->
-        <div class="col-md-4">
-            <h3>{{user.username}}</h3>
-            <!-- Showing user bio -->
-            {% if user.bio %}
-            <p>{{user.bio}}</p>
-            {% else %}
-            <p>{{user.username}} has no bio </p>
-            {% endif %}
+        <div class="col-md-8">
+            <div>
+                <h3>{{user.username}}</h3>
+                <!-- Showing user bio -->
+                {% if user.bio %}
+                <p>{{user.bio}}</p>
+                {% else %}
+                <p>{{user.username}} has no bio </p>
+                {% endif %}
+            </div>
+            <div >
+                <!-- Display profile photo -->
+                {% if user.profile_pic_path %}
+                <img src="{{url_for('static', filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
+                {% else %}
+                <p>No profile picture</p>
+                {% endif %}
+    
+                {% if user == current_user %}
+                <form action="{{url_for('main.update_pic', uname=user.username)}}" method="post"
+                    enctype="multipart/form-data">
+                    <input type="file" name="photo" class="form-control" required>
+                    <input type="submit">
+    
+                </form>
+                {% endif %}
+            </div>
+            <div>
+                {% if user == current_user %}
+                <a href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a>
+                {% endif %}
+            </div>
         </div>
         <div class="col-md-4">
-            <!-- Display profile photo -->
-            {% if user.profile_pic_path %}
-            <img src="{{url_for('static', filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
-            {% else %}
-            <p>No profile picture</p>
-            {% endif %}
-                       
-            {% if user == current_user %}
-            <form action="{{url_for('main.update_pic', uname=user.username)}}" method="post" enctype="multipart/form-data">
-                <input type="file" name="photo" class="form-control" required>
-                <input type="submit">
-
-            </form>
-            {% endif %}
+            <div>
+                <a href="{{url_for('main.new_post')}}">JOIN OUR COMMUNITY AND BE A CONTENT CONTRIBUTOR</a>
+            </div>
+            <br>
+            <br>
+            <div>
+                <h5>SUBSCRIBE TO OUR NEWSLETTER:</h5>
+                <form action="" id="newsletter">
+                    <input type="email" placeholder="Enter Your Email Address" id="email" required>
+                    <br>
+                    <br>
+                    <button type="submit" class="btn btn-success" id="newsLetter">Subscribe</button>
+                </form>
+            </div>
+            <br>
+            <div>
+                <p>CONNECT WITH US ON OUR SOCIALS:</p>
+                <ul>
+                    <li style="list-style-type: none;">
+                        <a href="http://facebook.com" target="blank">
+                            <i class="fab fa-facebook-square"></i>Facebook
+                        </a>
+                    </li>
+                    <li style="list-style-type: none;">
+                        <a href="http://instagram.com" target="blank">
+                            <i class="fab fa-instagram-square"></i>Instagram
+                        </a>
+                    </li>
+                    <li style="list-style-type: none;">
+                        <a href="http://twitter.com" target="blank">
+                            <i class="fab fa-twitter-square"></i>Twitter
+                        </a>
+                    </li>
+                </ul>                    
+            </div>
         </div>
-        <div class="col-md-4">
-            {% if user == current_user %}
-            <a href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a>
-            {% endif %}
-        </div>
+        
+        
     </div>
 </div>
 

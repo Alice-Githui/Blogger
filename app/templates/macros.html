@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         {% for category in categories %}
-        <div class="col-md-10">
+        <div class="col-md-8" style="margin-left: 30px;">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <small class="text-muted">Posted By: {{category.users.username | capitalize}}</small>
@@ -13,10 +13,11 @@
                     <h3>{{category.title}}</h3>
                     <div>
                         <p class="article-content">{{category.blog}}</p>
-                        <div><a href="{{url_for('main.new_comment', post_id=category.id)}}">Comments:</a></div>
-                        <div id="update-delete" style="align-items: flex-end; justify-content:left; text-align: left;">
+                        <div><a href="{{url_for('main.new_comment', post_id=category.id)}}">Add Comment</a></div>
+                        <div id="update-delete" style="text-align: right;">
                             <a href="{{url_for('main.update_post', post_id=category.id)}}"><small>Update Blog
                                     Post</small></a>
+                                    <br>
                             <a href="{{url_for('main.delete_post', post_id=category.id)}}"><small>Delete Blog
                                     Post</small></a>
                         </div>
