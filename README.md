@@ -18,6 +18,8 @@ To acquire a local copy:
 - Open the app on your preferred editor to view the source code
 - Run the app by running ./start.sh in your terminal to view the app on your browser
 
+## Known Bugs
+The application hitches on the delete comments section but then deletes the comments after reloading
 
 ## License
 
