@@ -5,20 +5,20 @@
         <div class="col-md-8" style="margin-left: 30px;">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <small class="text-muted">Posted By: {{category.users.username | capitalize}}</small>
-                    <small class="text-muted" style="margin-left: 30px;">Posted At:
+                    <small class="text-muted" style="font-size: 14px;">Posted By: {{category.users.username | capitalize}}</small>
+                    <small class="text-muted" style="margin-left: 30px; font-size: 14px;">Posted At:
                         {{category.time.strftime('%d-%m-%Y')}}</small>
                 </div>
                 <div class="panel-body">
-                    <h3>{{category.title}}</h3>
+                    <h3 style="font-size: 20px;">{{category.title}}</h3>
                     <div>
-                        <p class="article-content">{{category.blog}}</p>
-                        <div><a href="{{url_for('main.new_comment', post_id=category.id)}}">Add Comment</a></div>
+                        <p class="article-content" style="font-size: 18px;">{{category.blog}}</p>
+                        <div><a href="{{url_for('main.new_comment', post_id=category.id)}}" style="font-size: 16px;">Read Post:</a></div>
                         <div id="update-delete" style="text-align: right;">
-                            <a href="{{url_for('main.update_post', post_id=category.id)}}"><small>Update Blog
+                            <a href="{{url_for('main.update_post', post_id=category.id)}}" style="font-size: 14px;"><small>Update Blog
                                     Post</small></a>
                                     <br>
-                            <a href="{{url_for('main.delete_post', post_id=category.id)}}"><small>Delete Blog
+                            <a href="{{url_for('main.delete_post', post_id=category.id)}}" style="font-size: 14px;"><small>Delete Blog
                                     Post</small></a>
                         </div>
 

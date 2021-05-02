@@ -2,7 +2,7 @@ from flask import render_template, request, redirect,url_for,abort,flash
 from . import main
 from ..requests import get_quotes
 from flask_login import login_required, current_user
-from ..models import User,Post,Comment
+from ..models import User,Post,Comment, Subscriber
 from .forms import UpdateProfile,BlogForm,CommentForm, UpdateBlog
 from .. import db, photos
 import markdown2
@@ -147,5 +147,6 @@ def update_post(post_id):
         form.blog.data=post.blog
 
     return render_template('newblog.html', form=form, post=post, title='Update Post', legend='Update Post')
+
 
 
