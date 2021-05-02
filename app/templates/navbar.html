@@ -1,28 +1,25 @@
-<nav class="navbar navbar-dark fixed-top navbar-expand-lg navbar-no-bg" style="background-image:url(../static/photos/navbar.jpg); height: 300px; background-position: center; background-size: cover;">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/" style="color:white;">Blogger</a>
-        <span class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </span>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div id="navbar">
-                <a class="nav-link" aria-current="page" href="/" style="color:white;">Home</a>
-                <a class="nav-link" href="/newpost" style="color:white;">Contribute</a>
-                <!-- <a class="nav-link" href="#">Pricing</a>
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
-
-                <ul class="nav navbar-nav navbar-right">
-                    {% if current_user.is_authenticated %}
-                    <li style="color:white;padding:15px;"><a href="{{url_for('main.profile', uname=current_user.username)}}" style="color: white;">{{current_user.username | capitalize}}</a></li>
-                    <li><a href="{{url_for('auth.logout')}}" style="color: white;">Sign out</a></li>
-                    {% else %}
-                    <li><a href="{{url_for('auth.login')}}" style="color: white;">Sign in</a></li>
-                    {%endif%}
-                </ul>
-            </div>
-           
+<nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top"  style="background-image:url(/static/photos/navbar.jpg); height: 300px; background-position: center; background-size: cover;">
+    <div class="container">
+      <a class="navbar-brand mr-4" href="/" style="color:white; font-size: 26px;">Blog</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarToggle">
+        <div class="navbar-nav mr-auto">
+          <a class="nav-item nav-link" href="/" style="color:white; margin-left:50px; font-size: 18px;">Home</a>
+          <a class="nav-item nav-link" href="/newpost" style="color:white; margin-left:50px; font-size: 18px;">Contribute</a>
         </div>
-
+        <!-- Navbar Right Side -->
+        <div class="navbar-nav">
+            <ul class="nav navbar-nav navbar-right" id="auth">
+                {% if current_user.is_authenticated %}
+                <a style="color:white;padding:15px;"><a href="{{url_for('main.profile', uname=current_user.username)}}" style="color: white; margin-left: 50px; font-size: 18px;">{{current_user.username | capitalize}}</a></a>
+                <a href="{{url_for('auth.logout')}}" style="color: white; margin-left: 50px; font-size: 18px;">Sign out</a>
+                {% else %}
+                <a href="{{url_for('auth.login')}}" style="color: white; margin-left: 50px; font-size: 18px;">Sign in</a>
+                {%endif%}
+            </ul>
+        </div>
+      </div>
     </div>
-</nav>
+  </nav>

@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
 }
-
-#navbar{
-    margin-top: 20px;
+#auth{
+    list-style-type: none;
+    display: block;
 }
