@@ -1,4 +1,4 @@
-from flask import Flask 
+from flask import Flask, url_for
 from config import config_options
 from flask_bootstrap import Bootstrap   
 from flask_sqlalchemy import SQLAlchemy

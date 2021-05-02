@@ -3,24 +3,31 @@
     <div class="row">
         {% for category in categories %}
         <div class="col-md-10">
-            <div>
-                <div>
-                    <h3>{{category.title}}</h3>
-                    <p>Posted By: {{category.users.username}}</p>
-                    <p>Posted At: {{category.time.strftime('%d-%m-%Y')}}</p>
-                    <p>{{category.blog}}</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <small class="text-muted">Posted By: {{category.users.username | capitalize}}</small>
+                    <small class="text-muted" style="margin-left: 30px;">Posted At:
+                        {{category.time.strftime('%d-%m-%Y')}}</small>
                 </div>
-                <div><a href="{{url_for('main.new_comment', post_id=category.id)}}">Comments:</a></div>  
-                 
-                <div id="update-delete">
-                    <a href="{{url_for('main.update_post', post_id=category.id)}}"><small>Update Blog Post</small></a>
-                    <a href="{{url_for('main.delete_post', post_id=category.id)}}"><small>Delete Blog Post</small></a>
-                </div>          
+                <div class="panel-body">
+                    <h3>{{category.title}}</h3>
+                    <div>
+                        <p class="article-content">{{category.blog}}</p>
+                        <div><a href="{{url_for('main.new_comment', post_id=category.id)}}">Comments:</a></div>
+                        <div id="update-delete" style="align-items: flex-end; justify-content:left; text-align: left;">
+                            <a href="{{url_for('main.update_post', post_id=category.id)}}"><small>Update Blog
+                                    Post</small></a>
+                            <a href="{{url_for('main.delete_post', post_id=category.id)}}"><small>Delete Blog
+                                    Post</small></a>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
-    
+
         {% endfor %}
-    </div>   
+    </div>
 
 </div>
 

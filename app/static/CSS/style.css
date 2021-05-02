@@ -3,7 +3,8 @@
     margin: 0;
     padding: 0;
 }
-#auth{
-    list-style-type: none;
-    display: block;
+
+#update-delete{
+    align-items: flex-end;
+
 }
