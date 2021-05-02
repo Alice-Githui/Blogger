@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect,url_for,abort, flash
+from flask import render_template, request, redirect,url_for,abort,flash
 from . import main
 from ..requests import get_quotes
 from flask_login import login_required, current_user
@@ -9,6 +9,7 @@ import markdown2
 
 @main.route('/')
 def index():
+
     posts=Post.query.all()
     allposts=Post.query.filter_by(category="allposts")   
     title='Welcome to this blog app'
@@ -73,7 +74,7 @@ def new_post():
 
         return redirect(url_for('main.index'))
 
-    return render_template('newblog.html', form=form)
+    return render_template('newblog.html', form=form, title='Create New Post', legend='New Post')
 
 @main.route('/comment/<int:post_id>', methods=['GET', 'POST'])
 def new_comment(post_id):
@@ -121,7 +122,10 @@ def delete_post(post_id):
 def update_post(post_id):
     post=Post.query.get(post_id)
 
-    form=UpdateBlog()
+    if post.users !=current_user:
+        abort (403)
+
+    form=BlogForm()
 
     if form.validate_on_submit():
         post.category=form.category.data
@@ -129,10 +133,14 @@ def update_post(post_id):
         post.blog=form.blog.data
 
         db.session.commit()
-        flash("You have updated your blog")
 
         return redirect(url_for('main.index', id=post.id))
 
-    return render_template('updateblog.html', form=form)
+    elif request.method=='GET':
+        form.category.data=post.category
+        form.title.data=post.title
+        form.blog.data=post.blog
+
+    return render_template('newblog.html', form=form, post=post, title='Update Post', legend='Update Post')
 
 

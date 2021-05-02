@@ -5,7 +5,9 @@
         <div class="col-md-10">
             <div>
                 <div>
-                    <h1>{{category.title}}</h1>
+                    <h3>{{category.title}}</h3>
+                    <p>Posted By: {{category.users.username}}</p>
+                    <p>Posted At: {{category.time.strftime('%d-%m-%Y')}}</p>
                     <p>{{category.blog}}</p>
                 </div>
                 <div><a href="{{url_for('main.new_comment', post_id=category.id)}}">Comments:</a></div>  
