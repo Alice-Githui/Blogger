@@ -59,6 +59,7 @@ def update_pic(uname):
 @main.route('/newpost', methods=['GET', 'POST'])
 @login_required
 def new_post():
+    subscribers=Subscriber.query.all()
     form=BlogForm()
 
     if form.validate_on_submit():
@@ -71,6 +72,9 @@ def new_post():
 
         db.session.add(new_post)
         db.session.commit()
+
+        for subscriber in subscribers:
+            subscriber_message("A new blog has been posted on our site.","email/new_post", subscriber.email, user=user)
 
         return redirect(url_for('main.index'))
 

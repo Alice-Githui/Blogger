@@ -5,15 +5,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <p>Posted By:{{post.users.username}}</p>
-            <h3>{{post.title}}</h3>
-            <p>{{post.blog}}</p>
+            <p style="font-size: 14px;">Posted By:{{post.users.username | capitalize}}</p>
+            <h3 style="font-size: 20px; font-weight:bold">{{post.title}}</h3>
+            <p class="article-content" style="font-size: 18px; text-align:justify;">{{post.blog}}</p>
         </div>
         <div class="col-md-6">
             {{wtf.quick_form(commentform)}}
             {% for comment in all_comments %}
-            <ul>
-                <li>
+            <ul style="margin-left: 30px;">
+                <p style="font-size: 20px;">Comments</p>
+                <li style="font-size: 18px; text-align:justify; list-style-type: none;">
                     {{comment.comment}}
                     <div><a href="{{url_for('main.delete_comment', comment_id=comment.id)}}">Delete Comment</a></div>
                 </li>

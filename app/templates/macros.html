@@ -10,9 +10,9 @@
                         {{category.time.strftime('%d-%m-%Y')}}</small>
                 </div>
                 <div class="panel-body">
-                    <h3 style="font-size: 20px;">{{category.title}}</h3>
+                    <h3 style="font-size: 20px; font-weight:bold">{{category.title}}</h3>
                     <div>
-                        <p class="article-content" style="font-size: 18px;">{{category.blog}}</p>
+                        <p class="article-content" style="font-size: 18px;">{{category.blog | truncate (350)}}....</p>
                         <div><a href="{{url_for('main.new_comment', post_id=category.id)}}" style="font-size: 16px;">Read Post:</a></div>
                         <div id="update-delete" style="text-align: right;">
                             <a href="{{url_for('main.update_post', post_id=category.id)}}" style="font-size: 14px;"><small>Update Blog
