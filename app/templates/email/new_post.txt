@@ -1,0 +1,2 @@
+Hello {{user.username}}
+A new post has been added to our blogsite. Visit our site to catch up on all posts.
