@@ -3,6 +3,54 @@
 
 {% block content %}
 <div class="container">
-  {{wtf.quick_form(updateform)}}
+  <div class="row">
+    <div class="col-md-8">
+      {{wtf.quick_form(updateform)}}
+    </div>
+    <div class="col-md-4">
+      <div>
+          <a href="{{url_for('main.new_post')}}">JOIN OUR COMMUNITY AND BE A CONTENT CONTRIBUTOR</a>
+      </div>
+      <div>
+          <h5>SUBSCRIBE TO OUR NEWSLETTER:</h5>
+          <form action="" id="newsletter">
+              <input type="email" placeholder="Enter Your Email Address" id="email" required>
+              <br>
+              <br>
+              <button type="submit" class="btn btn-success" id="newsLetter">Subscribe</button>
+          </form>
+      </div>
+      <br>
+      <div>
+          <p>CONNECT WITH US ON OUR SOCIALS:</p>
+          <ul style="display: inline-block;">
+              <li style="list-style-type: none;">
+                  <a href="http://facebook.com" target="blank">
+                      <i class="fab fa-facebook-square"></i>Facebook
+                  </a>
+              </li>
+
+              <li style="list-style-type: none;">
+                  <a href="http://twitter.com" target="blank">
+                      <i class="fab fa-twitter-square"></i>Twitter
+                  </a>
+              </li>
+
+              <li style="list-style-type: none;">
+                  <a href="https://www.instagram.com/" target="blank">
+                      <i class="fab fa-instagram-square"></i>Instagram
+                  </a>
+              </li>
+
+              <li style="list-style-type: none;">
+                  <a href="https://github.com/lilianjerikamau/budgetApp" target="blank">
+                      <i class="fab fa-github-square"></i>GitHub
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+  </div>
+  
 </div>
 {% endblock %}

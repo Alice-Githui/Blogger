@@ -96,7 +96,8 @@ def new_comment(post_id):
     print(all_comments)
     return render_template('comment.html', commentform=commentform, all_comments=all_comments,post=post)
 
-@main.route('/comment/delete/<int:comment_id>', methods=['GET', 'POST'])
+
+@main.route('/comment/delete/<int:comment_id>', methods=['GET','POST'])
 @login_required
 def delete_comment(comment_id):
     comment=Comment.query.filter_by(id=comment_id).first()
@@ -110,7 +111,11 @@ def delete_comment(comment_id):
 @main.route('/post/delete/<int:post_id>', methods=['GET','POST'])
 @login_required
 def delete_post(post_id):
+
     post=Post.query.filter_by(id = post_id).first()
+
+    if post.users !=current_user:
+        abort(403)
 
     db.session.delete(post)
     db.session.commit()
