@@ -11,7 +11,7 @@ import markdown2
 def index():
 
     posts=Post.query.all()
-    allposts=Post.query.filter_by(category="allposts")   
+    allposts=Post.query.order_by(Post.time.desc()).filter_by(category="allposts")   
     title='Welcome to this blog app'
 
     quotes=get_quotes()
