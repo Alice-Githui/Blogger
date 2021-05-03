@@ -16,7 +16,7 @@
                 <p style="font-size: 20px;">Comments</p>
                 <li style="font-size: 18px; text-align:justify; list-style-type: none;">
                     {{comment.comment}}
-                    <div><a href="{{url_for('main.delete_comment', comment_id=comment.id)}}">Delete Comment</a></div>
+                    <div><a href="{{url_for('main.delete_comment',comment_id=comment.id)}}">Delete Comment</a></div>
                 </li>
             </ul>
             {% endfor %}
