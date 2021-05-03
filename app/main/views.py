@@ -105,12 +105,13 @@ def new_comment(post_id):
 @login_required
 def delete_comment(comment_id):
 
-    comments = Comment.query.filter_by(comment_id = comment_id).all()
+    comments = Comment.query.filter_by(id = comment_id).all()
 
-    db.session.delete(comments)
-    db.session.commit()
+    for comment in comments:
+        db.session.delete(comment)
+        db.session.commit()    
 
-    return redirect(url_for('.new_comment'))
+    return redirect(url_for('.new_post'))
 
 
 @main.route('/post/delete/<int:post_id>', methods=['GET','POST'])
